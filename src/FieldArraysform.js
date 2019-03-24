@@ -12,31 +12,6 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
   </div>
 );
 
-const renderHobbies = ({ fields, meta: { error } }) => (
-  <ul>
-    <li>
-      <button type="button" onClick={() => fields.push()}>
-        Add Hobby
-      </button>
-    </li>
-    {fields.map((hobby, index) => (
-      <li key={index}>
-        <button
-          type="button"
-          title="Remove Hobby"
-          onClick={() => fields.remove(index)}
-        />
-        <Field
-          name={hobby}
-          type="text"
-          component={renderField}
-          label={`Hobby #${index + 1}`}
-        />
-      </li>
-    ))}
-    {error && <li className="error">{error}</li>}
-  </ul>
-);
 
 const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
   <ul>
@@ -46,14 +21,9 @@ const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
       </button>
       {(touched || submitFailed) && error && <span>{error}</span>}
     </li>
-    {fields.map((member, index) => (
-      <li key={index}>
-        <button
-          type="button"
-          title="Remove Member"
-          onClick={() => fields.remove(index)}
-        />
-        <h4>Member #{index + 1}</h4>
+    {fields.map((member) => (
+      <li>
+        <h4>Member</h4>
         <Field
           name={`${member}.firstName`}
           type="text"
@@ -66,7 +36,6 @@ const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
           component={renderField}
           label="Last Name"
         />
-        <FieldArray name={`${member}.hobbies`} component={renderHobbies} />
       </li>
     ))}
   </ul>
