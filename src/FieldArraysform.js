@@ -2,7 +2,7 @@ import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
 import validate from "./validate";
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
+const renderField = ({  input,label, type, meta: { touched, error } }) => (
   <div>
     <label>{label}</label>
     <div>
