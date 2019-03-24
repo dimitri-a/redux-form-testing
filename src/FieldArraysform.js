@@ -2,15 +2,15 @@ import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
 import validate from "./validate";
 
-const renderField = ({  input,label, type, meta: { touched, error } }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} type={type} placeholder={label} />
-      {touched && error && <span>{error}</span>}
-    </div>
-  </div>
-);
+// const renderField = ({  input,label, type, meta: { touched, error } }) => (
+//   <div>
+//     <label>{label}</label>
+//     <div>
+//       <input {...input} type={type} placeholder={label} />
+//       {touched && error && <span>{error}</span>}
+//     </div>
+//   </div>
+// );
 
 
 const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
@@ -27,13 +27,13 @@ const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
         <Field
           name={`${member}.firstName`}
           type="text"
-          component={renderField}
+          component="input"
           label="First Name"
         />
         <Field
           name={`${member}.lastName`}
           type="text"
-          component={renderField}
+          component="input"
           label="Last Name"
         />
       </li>
@@ -48,7 +48,7 @@ const FieldArraysForm = props => {
       <Field
         name="clubName"
         type="text"
-        component={renderField}
+        component="input"
         label="Club Name"
       />
       <FieldArray name="members" component={renderMembers} />
