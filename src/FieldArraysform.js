@@ -2,45 +2,33 @@ import React from "react";
 import { Field, FieldArray, reduxForm } from "redux-form";
 import validate from "./validate";
 
-// const renderField = ({  input,label, type, meta: { touched, error } }) => (
-//   <div>
-//     <label>{label}</label>
-//     <div>
-//       <input {...input} type={type} placeholder={label} />
-//       {touched && error && <span>{error}</span>}
-//     </div>
-//   </div>
-// );
+const renderField = ({  input,label, type, meta: { touched, error } }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <input {...input} type={type} placeholder={label} />
+      {touched && error && <span>{error}</span>}
+    </div>
+  </div>
+);
 
 
 const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
   <ul>
-    <li>
-      <button type="button" onClick={() => fields.push({})}>
-        Add Member
-      </button>
-     
-    </li>
     {fields.map((member) => (
       <li>
         <h4>Member</h4>
         <Field
           name={`${member}.firstName`}
           type="text"
-          component="input"
+          component={renderField}
           label="First Name"
         />
         <Field
           name={`${member}.lastName`}
           type="text"
-          component="input"
+          component={renderField}
           label="Last Name"
-        />
-            <Field
-          name={`${member}.location`}
-          type="text"
-          component="input"
-          label="city"
         />
       </li>
     ))}
@@ -51,12 +39,12 @@ const FieldArraysForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      {/* <Field
+      <Field
         name="clubName"
         type="text"
         component="input"
         label="Club Name"
-      /> */}
+      />
       <FieldArray name="members" component={renderMembers} />
       <div>
         <button type="submit" disabled={submitting}>
