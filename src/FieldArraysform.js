@@ -19,7 +19,7 @@ const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
       <button type="button" onClick={() => fields.push({})}>
         Add Member
       </button>
-      {(touched || submitFailed) && error && <span>{error}</span>}
+     
     </li>
     {fields.map((member) => (
       <li>
@@ -36,6 +36,12 @@ const renderMembers = ({ fields, meta: { touched, error, submitFailed } }) => (
           component="input"
           label="Last Name"
         />
+            <Field
+          name={`${member}.location`}
+          type="text"
+          component="input"
+          label="city"
+        />
       </li>
     ))}
   </ul>
@@ -45,12 +51,12 @@ const FieldArraysForm = props => {
   const { handleSubmit, pristine, reset, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
-      <Field
+      {/* <Field
         name="clubName"
         type="text"
         component="input"
         label="Club Name"
-      />
+      /> */}
       <FieldArray name="members" component={renderMembers} />
       <div>
         <button type="submit" disabled={submitting}>
